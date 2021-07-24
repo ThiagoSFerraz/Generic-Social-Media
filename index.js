@@ -8,10 +8,7 @@ const { MONGODB } = require("./config");
 const server = new ApolloServer({
   typeDefs,
   resolvers,
-  cors: {
-    origin: "http://localhost:5000/",
-    allowedHeaders: "https://studio.apollographql.com",
-  },
+  context: ({ req }) => ({ req }),
 });
 
 mongoose
