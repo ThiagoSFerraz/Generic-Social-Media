@@ -73,6 +73,14 @@ module.exports = {
           },
         });
       }
+      const emailInUse = await User.findOne({ email });
+      if (emailInUse) {
+        throw new UserInputError("Email is taken", {
+          errors: {
+            username: "This email is already in use.",
+          },
+        });
+      }
 
       password = await bcrypt.hash(password, 12);
 
